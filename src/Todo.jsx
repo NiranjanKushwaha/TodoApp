@@ -7,22 +7,38 @@ function Todo() {
   const [data, setdata] = useState([]);
 
   const inputHandle = (e) => {
-    setInput(e.target.value);
+      setInput(e.target.value);
   };
 
   const addBtnHandle = (e) => {
-    setdata(() => {
-      return [...data, input];
-    });
-    setInput("");
+    if (data.length < 7) {
+      if (input !== "") {
+        setdata(() => {
+          return [...data, input];
+        });
+        setInput("");
+      }
+    }
+    else {
+      alert("No more todos");
+    }
   };
 
   const pressEnterKey = (e) => {
     if (e.key === "Enter") {
-      setdata(() => {
-        return [...data, input];
-      });
-      setInput("");
+      if (input !== "") {
+        if (data.length < 7) {
+          setdata(() => {
+            return [...data, input];
+          });
+          setInput("");
+        }
+        else {
+          alert("No more todos");
+        }
+
+        
+      }
     }
   };
 
